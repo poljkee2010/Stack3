@@ -2,6 +2,11 @@
 #include "stack.hpp"
 using namespace std;
 
+void StackPop(); //сигнатура функций
+void StackEmpty();
+void StackInit();
+void StackPush();
+
 int main() 
 {
 try 
