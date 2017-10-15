@@ -69,30 +69,21 @@ public:
 		array_ = temp;   //меняем указатель
 	}
 
-	stack(const stack& s) noexcept //Конструктор копирования
+	stack(const stack& s) noexcept :capacity_(s.capacity_),count_(s.count_),array_(new T[s.capacity_]) //Конструктор копирования
 	{
-		if (this != &s)
+		for (size_t i = 0; i < s.capacity_; ++i)
 		{
-			delete[] array_;
-			capacity_ = s.capacity_;
-			count_ = s.count_;
-			array_ = new T[s.capacity_];
-			for (size_t i = 0; i < s.capacity_; ++i)
-			{
-				array_[i] = s.array_[i];
-			}
+			array_[i] = s.array_[i];
 		}
 	}
 
-	stack(stack&& s) noexcept //Конструктор перемещения
+	stack(stack&& s) noexcept : capacity_(s.capacity_), count_(s.count_), array_(s.array_) //Конструктор перемещения
 	{
-		capacity_ = s.capacity_;
-		count_ = s.count_;
-		array_ = s.array_;
 		s.capacity_ = 0;
 		s.count_ = 0;
 		s.array_ = nullptr;
 	}
+
 
 	stack operator = (const stack& S) noexcept //Оператор присваивания с семантикой копирования
 	{
@@ -122,11 +113,5 @@ public:
 		return array_[pos];
 	}
 };
-
-
-void StackPop(); //сигнатура функций
-void StackEmpty();
-void StackInit();
-void StackPush();
 
 #endif /*STACK_HPP*/
