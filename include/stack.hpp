@@ -36,13 +36,12 @@ public:
 	{
 		return array_[count_];
 	}
-	T pop() noexcept {
+	void pop() noexcept {
 		if (count_ == 0)
 		{
 			throw runtime_error("Stack is empty!!!"); // генерируем исключение
 		}
 		--count_; //Снижение счетчика на единицу
-		return top();
 	}
 
 	~stack() noexcept
